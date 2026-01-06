@@ -4,23 +4,19 @@
   <meta charset="UTF-8">
   <title>Teachable Machine</title>
 
-  <!-- TensorFlow.js -->
   <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest"></script>
-
-  <!-- Teachable Machine Image -->
   <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest"></script>
 </head>
 <body>
 
 <h1>Teachable Machine demo</h1>
-
 <button onclick="init()">Start camera</button>
 
 <div id="webcam-container"></div>
 <div id="label-container"></div>
 
 <script>
-  https://teachablemachine.withgoogle.com/models/oAKL7zHtu/;
+  const URL = https://teachablemachine.withgoogle.com/models/oAKL7zHtu/;
 
   let model, webcam, labelContainer, maxPredictions;
 
@@ -52,10 +48,15 @@
   }
 
   async function predict() {
-  const prediction = await model.predict(webcam.canvas);
-  for (let i = 0; i < maxPredictions; i++) {
-    labelContainer.childNodes[i].innerHTML =
-      prediction[i].className + ": " +
-      (prediction[i].probability * 100).toFixed(1) + "%";
+    const prediction = await model.predict(webcam.canvas);
+    for (let i = 0; i < maxPredictions; i++) {
+      labelContainer.childNodes[i].innerHTML =
+        prediction[i].className + ": " +
+        (prediction[i].probability * 100).toFixed(1) + "%";
+    }
   }
-}
+</script>
+
+</body>
+</html>
+
